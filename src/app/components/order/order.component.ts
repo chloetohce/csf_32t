@@ -27,6 +27,22 @@ export class OrderComponent {
     return !!this.orderForm.get(field)?.valid
   }
 
+  protected addItem() {
+    this.items.push(this.createItem())
+  }
+
+  protected createItem(): FormGroup {
+    return this.fb.group({
+      item: this.fb.control<string>(''),
+      qty: this.fb.control<number>(0),
+      unitPrice: this.fb.control<number>(1.0)
+    })
+  }
+
+  protected removeItem(idx: number) {
+    this.items.removeAt(idx)
+  }
+
   protected processOrderForm() {
     console.info(this.orderForm.value)
   }

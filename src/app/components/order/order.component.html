@@ -51,20 +51,23 @@
     <div class="line-items">
         <div class="title">
             <h2>Line Items</h2>
-            <button type="button">+</button>
+            <button type="button" (click)="addItem()">+</button>
         </div>
-        <table>
+        <table *ngIf="orderForm.get('items')?.value.length != 0">
             <thead>
                 <th>Item</th>
                 <th>Qty</th>
                 <th>Unit Price</th>
             </thead>
             <tbody formArrayName="items">
-                <tr>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                    <td><input type="text" name="" id=""></td>
-                </tr>
+                @for (item of items.controls; let i = $index; track item) {
+                    <tr [formGroupName]="i">
+                        <td><input type="text" formControlName="item"></td>
+                        <td><input type="number" formControlName="qty"></td>
+                        <td><input type="number" formControlName="unitPrice"></td>
+                    </tr>
+
+                }
             </tbody>
         </table>
     </div>
