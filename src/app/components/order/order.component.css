@@ -1,0 +1,28 @@
+.title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.line-items {
+    width: max-content;
+}
+
+button {
+    height: max-content;
+    font-size: small;
+    width: max-content;
+}
+
+.invalid {
+    border: 2px red solid;
+    border-radius: 6px;
+}
+
+.invalid:focus {
+    outline: none;
+    border: 2px red solid;
+    border-radius: 6px;
+    box-shadow: 0 0 3px red;
+}

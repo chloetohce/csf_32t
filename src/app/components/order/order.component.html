@@ -1,0 +1,71 @@
+<form [formGroup]="orderForm" (submit)="processOrderForm()">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>
+                <input type="text" formControlName="name" [ngClass]="isFieldValid('name') ? 'valid' : 'invalid' ">
+            </td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>
+                <input type="text" formControlName="address" [ngClass]="isFieldValid('address') ? 'valid' : 'invalid' ">
+            </td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="email" formControlName="email" [ngClass]="isFieldValid('email') ? 'valid' : 'invalid' ">
+            </td>
+        </tr>
+        <tr>
+            <td>Delivery Date</td>
+            <td>
+                <input type="date" formControlName="deliveryDate" [ngClass]="isFieldValid('deliveryDate') ? 'valid' : 'invalid' ">
+            </td>
+        </tr>
+        <tr>
+            <td>Availability</td>
+            <td>
+                @for (time of availabilityOptions; let i = $index; track time) {
+                    <tr>
+                        <label [for]="time.value">{{time.value}}</label>
+                        <input type="checkbox" [disabled]="orderForm.get('urgent')?.value" (change)="handleAvailabilityOption(time.value, $event)" [value]="time.value">
+                    </tr>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>Urgent</td>
+            <td>
+                <input type="checkbox" formControlName="urgent">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+    
+    <div class="line-items">
+        <div class="title">
+            <h2>Line Items</h2>
+            <button type="button">+</button>
+        </div>
+        <table>
+            <thead>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+            </thead>
+            <tbody formArrayName="items">
+                <tr>
+                    <td><input type="text" name="" id=""></td>
+                    <td><input type="text" name="" id=""></td>
+                    <td><input type="text" name="" id=""></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
