@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit {
   private fb = inject(FormBuilder)
 
   protected orderForm!: FormGroup
@@ -24,7 +24,7 @@ export class OrderComponent {
   }
 
   protected isFieldValid(field: string): boolean {
-    return !!this.orderForm.get(field)?.valid
+    return !!this.orderForm.get(field)?.valid || !!this.orderForm.get(field)?.pristine
   }
 
   protected addItem() {
